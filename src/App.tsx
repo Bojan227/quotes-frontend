@@ -1,9 +1,15 @@
-import React from 'react';
+import Home from './pages/Home';
+import RandomPage from './pages/RandomQuotePage';
+import { Route, Routes } from 'react-router-dom';
+import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello</h1>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/random-quote" element={<RandomPage />} />
+      </Routes>
     </div>
   );
 }
