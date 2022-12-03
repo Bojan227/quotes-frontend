@@ -16,7 +16,7 @@ export default function useGetRandomQuote() {
       const res = await fetch(`http://localhost:8000/quotes/random-quote`);
       const json = await res.json();
 
-      setQuote(json);
+      setQuote(json[0]);
     } catch (error) {
       setError(error as string);
     } finally {
