@@ -3,13 +3,18 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import useGetQuotes from '../hooks/useGetQuotes';
 import AuthorGender from './AuthorGender';
+import { QuoteType } from '../types/QuoteType';
 
-export default function QuotesBody({ page }: { page: number }) {
-  const { quotes } = useGetQuotes(page);
-
+export default function QuotesBody({
+  page,
+  quotes,
+}: {
+  page: number;
+  quotes: QuoteType[];
+}) {
   return (
     <TableBody>
-      {quotes.map(({ _id, a, q }, i) => {
+      {quotes?.map(({ _id, a, q }, i) => {
         return (
           <TableRow key={_id}>
             <TableCell>{i + 1}</TableCell>
