@@ -23,6 +23,5 @@ export default function useGetQuotes(page: number) {
       setIsLoading(false);
     }
   };
-
   return { quotes, setQuotes, isLoading, error };
 }

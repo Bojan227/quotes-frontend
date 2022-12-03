@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { GenderType } from '../types/GenderType';
-import { QuoteType } from '../types/QuoteType';
 
 export default function useGetGender(author: string) {
-  const [gender, setGender] = useState<'👨' | '👱‍♀️'>();
+  const [gender, setGender] = useState<GenderType>();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
