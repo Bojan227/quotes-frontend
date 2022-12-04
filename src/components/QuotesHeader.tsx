@@ -4,7 +4,7 @@ import TableRow from '@mui/material/TableRow';
 
 export default function QuotesHeader() {
   return (
-    <TableHead>
+    <TableHead sx={{ backgroundColor: '#6366f1' }}>
       <TableRow>
         <TableCell>ID</TableCell>
         <TableCell>Author</TableCell>
