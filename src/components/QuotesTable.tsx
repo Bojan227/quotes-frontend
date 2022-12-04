@@ -42,8 +42,8 @@ export default function QuotesTable() {
         gap="35px"
       >
         <Typography variant="h2">Welcome to Quottastic</Typography>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+        <TableContainer sx={{ width: '85%' }} component={Paper}>
+          <Table aria-label="custom pagination table">
             <QuotesHeader />
             <QuotesBody />
             <TableFooter sx={{ backgroundColor: '#6366f1' }}>
