@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { QuoteType } from '../types/QuoteType';
+import { useAddQuotes } from '../context/quotesContext';
 
 export default function useGetQuotes(page: number) {
-  const [quotes, setQuotes] = useState<QuoteType[]>([]);
+  const addQuotes = useAddQuotes();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -16,12 +16,12 @@ export default function useGetQuotes(page: number) {
       const res = await fetch(`http://localhost:8000/quotes/?page=${page}`);
       const json = await res.json();
 
-      setQuotes(json);
+      addQuotes(json);
     } catch (error) {
       setError(error as string);
     } finally {
       setIsLoading(false);
     }
   };
-  return { quotes, setQuotes, isLoading, error };
+  return { isLoading, error };
 }

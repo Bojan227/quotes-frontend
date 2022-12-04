@@ -1,17 +1,11 @@
 import TableRow from '@mui/material/TableRow';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
-import useGetQuotes from '../hooks/useGetQuotes';
 import AuthorGender from './AuthorGender';
-import { QuoteType } from '../types/QuoteType';
+import { useQuotes } from '../context/quotesContext';
 
-export default function QuotesBody({
-  page,
-  quotes,
-}: {
-  page: number;
-  quotes: QuoteType[];
-}) {
+export default function QuotesBody() {
+  const quotes = useQuotes();
   return (
     <TableBody>
       {quotes?.map(({ _id, a, q }, i) => {

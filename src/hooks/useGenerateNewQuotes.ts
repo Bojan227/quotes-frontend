@@ -1,19 +1,19 @@
 import { useState } from 'react';
-import { QuoteType } from '../types/QuoteType';
+import { useAddQuotes } from '../context/quotesContext';
 export default function useGenerateNewQuotes() {
-  const [error, setError] = useState('');
-  const generateNewQuotes = async (
-    setQuotes: React.Dispatch<React.SetStateAction<QuoteType[]>>
-  ) => {
+  const [errorMessage, setError] = useState('');
+  const addQuotes = useAddQuotes();
+
+  const generateNewQuotes = async () => {
     try {
       const res = await fetch(`http://localhost:8000/quotes/generate`);
       const { newQuotes } = await res.json();
 
-      setQuotes(newQuotes);
+      addQuotes(newQuotes);
     } catch (error) {
       setError('Unable to find new quotes');
     }
   };
 
-  return { generateNewQuotes };
+  return { generateNewQuotes, errorMessage };
 }

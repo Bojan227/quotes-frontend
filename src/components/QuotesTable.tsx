@@ -3,17 +3,21 @@ import { Link } from 'react-router-dom';
 import QuotesHeader from './QuotesHeader';
 import QuotesBody from './QuotesBody';
 import Box from '@mui/material/Box';
-import TableContainer from '@mui/material/TableContainer';
-import Table from '@mui/material/Table';
-import TablePagination from '@mui/material/TablePagination';
 import useGenerateNewQuotes from '../hooks/useGenerateNewQuotes';
-import Button from '@mui/material/Button';
 import useGetQuotes from '../hooks/useGetQuotes';
+import LoadingSpinner from './LoadingSpinner';
+import {
+  Typography,
+  Table,
+  TableContainer,
+  TablePagination,
+  Button,
+} from '@mui/material';
 
 export default function QuotesTable() {
   const [page, setPage] = useState(0);
+  const { isLoading, error } = useGetQuotes(page);
   const { generateNewQuotes } = useGenerateNewQuotes();
-  const { quotes, setQuotes } = useGetQuotes(page);
 
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
@@ -21,6 +25,8 @@ export default function QuotesTable() {
   ) => {
     setPage(newPage);
   };
+
+  if (isLoading) <LoadingSpinner />;
 
   return (
     <Box
@@ -34,7 +40,7 @@ export default function QuotesTable() {
       <TableContainer>
         <Table>
           <QuotesHeader />
-          <QuotesBody {...{ page, quotes }} />
+          <QuotesBody />
           <TablePagination
             rowsPerPageOptions={[10]}
             count={50}
@@ -51,12 +57,13 @@ export default function QuotesTable() {
         <Button
           variant="outlined"
           onClick={() => {
-            generateNewQuotes(setQuotes);
+            generateNewQuotes();
           }}
         >
           Generate New Quotes
         </Button>
       </Box>
+      {error && <Typography>{error}</Typography>}
     </Box>
   );
 }
