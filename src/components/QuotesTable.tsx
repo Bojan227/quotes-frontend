@@ -39,8 +39,9 @@ export default function QuotesTable() {
         justifyContent="center"
         flexDirection="column"
         minHeight="100vh"
-        gap="25px"
+        gap="35px"
       >
+        <Typography variant="h2">Welcome to Quottastic</Typography>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
             <QuotesHeader />
